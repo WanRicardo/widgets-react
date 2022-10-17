@@ -30,12 +30,29 @@ const options = [
     {
         label: 'A shade of blue',
         value: 'blue'
+    },
+    {
+        label: 'A shade of bisque',
+        value: 'bisque'
+    },
+    {
+        label: 'A bar of chocolate',
+        value: 'chocolate'
+    },
+    {
+        label: 'What? whitesmoke',
+        value: 'whitesmoke'
     }
 
 ]
 
 const App = () => {
-    const [selected, setSelected] = useState(options[0])
+    
+    const opt = options.sort((a, b) => {
+        return a.value > b.value
+    })[0]
+    console.log(opt);
+    const [selected, setSelected] = useState(options.sort((a, b) => { return a.value > b.value })[0])
     const [showDropdown, setShowDropdown] = useState(true)
 
     return(
@@ -50,6 +67,7 @@ const App = () => {
                 :
                 null
             }
+            <h3 style={{ color: selected.value }}>This text is {selected.value.toUpperCase()}</h3>
         </div>
     )
 }

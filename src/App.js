@@ -1,22 +1,23 @@
 import React, { useState } from "react"
-// import Accordion from "./components/Accordion"
-// import Search from "./components/Search"
+import Accordion from "./components/Accordion"
+import Search from "./components/Search"
 import Dropdown from "./components/Dropdown"
+import Translate from "./components/Translate"
 
-// const items = [
-//     {
-//         title: 'What is React?',
-//         content: 'React is a front end javascript framework'
-//     },
-//     {
-//         title: 'Why use React?',
-//         content: 'React is a favorite JS library among engineers'
-//     },
-//     {
-//         title: 'How do you use React?',
-//         content: 'You use React by creating components'
-//     }
-// ]
+const items = [
+    {
+        title: 'What is React?',
+        content: 'React is a front end javascript framework'
+    },
+    {
+        title: 'Why use React?',
+        content: 'React is a favorite JS library among engineers'
+    },
+    {
+        title: 'How do you use React?',
+        content: 'You use React by creating components'
+    }
+]
 
 const options = [
     {
@@ -43,21 +44,27 @@ const options = [
         label: 'What? whitesmoke',
         value: 'whitesmoke'
     }
-
 ]
 
+const showNavItems = () => {
+    if (window.location.pathname === '/') return <Accordion items={items}/>
+
+    if (window.location.pathname === '/list') return <Search />
+
+    if (window.location.pathname === '/dropdown') return <Dropdown />
+
+    if (window.location.pathname === '/translate') return <Translate />
+}
+
 const App = () => {
-    
-    const opt = options.sort((a, b) => {
-        return a.value > b.value
-    })[0]
-    console.log(opt);
-    const [selected, setSelected] = useState(options.sort((a, b) => { return a.value > b.value })[0])
-    const [showDropdown, setShowDropdown] = useState(true)
+
+    // const [selected, setSelected] = useState(options.sort((a, b) => { return a.value > b.value })[0])
+    // const [showDropdown, setShowDropdown] = useState(true)
 
     return(
         <div className="ui container">
-            <button onClick={() => setShowDropdown(!showDropdown)}>Toogle Dropdown</button>
+            {showNavItems()}
+            {/* <button onClick={() => setShowDropdown(!showDropdown)}>Toogle Dropdown</button>
             {showDropdown ? 
                 <Dropdown 
                     selected={selected}
@@ -66,8 +73,7 @@ const App = () => {
                 />
                 :
                 null
-            }
-            <h3 style={{ color: selected.value }}>This text is {selected.value.toUpperCase()}</h3>
+            } */}
         </div>
     )
 }

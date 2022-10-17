@@ -3,6 +3,8 @@ import Accordion from "./components/Accordion"
 import Search from "./components/Search"
 import Dropdown from "./components/Dropdown"
 import Translate from "./components/Translate"
+import Route from "./components/Route"
+import Header from "./components/Header"
 
 const items = [
     {
@@ -45,35 +47,30 @@ const options = [
         value: 'whitesmoke'
     }
 ]
-
-const showNavItems = () => {
-    if (window.location.pathname === '/') return <Accordion items={items}/>
-
-    if (window.location.pathname === '/list') return <Search />
-
-    if (window.location.pathname === '/dropdown') return <Dropdown />
-
-    if (window.location.pathname === '/translate') return <Translate />
-}
-
 const App = () => {
 
-    // const [selected, setSelected] = useState(options.sort((a, b) => { return a.value > b.value })[0])
-    // const [showDropdown, setShowDropdown] = useState(true)
+    const [selected, setSelected] = useState(options.sort((a, b) => { return a.value > b.value })[0])
 
     return(
         <div className="ui container">
-            {showNavItems()}
-            {/* <button onClick={() => setShowDropdown(!showDropdown)}>Toogle Dropdown</button>
-            {showDropdown ? 
+            <Header />
+            <Route path="/">
+                <Accordion items={items} />
+            </Route>
+            <Route path="/list">
+                <Search />
+            </Route>
+            <Route path="/dropdown">
                 <Dropdown 
+                    label="Select a color"
+                    options={options}
                     selected={selected}
                     onSelectedChange={setSelected}
-                    options={options}
                 />
-                :
-                null
-            } */}
+            </Route>
+            <Route path="/translate">
+                <Translate />
+            </Route>
         </div>
     )
 }

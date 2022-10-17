@@ -41,17 +41,15 @@ const App = () => {
     return(
         <div className="ui container">
             <button onClick={() => setShowDropdown(!showDropdown)}>Toogle Dropdown</button>
-                {showDropdown ? 
-                    <Dropdown 
-                        selected={selected}
-                        onSelectedChange={setSelected}
-                        options={options}
-                    />
-                    :
-                    null
-                }
-            {/* <Search /> */}
-            {/* <Accordion items={items} /> */}
+            {showDropdown ? 
+                <Dropdown 
+                    selected={selected}
+                    onSelectedChange={setSelected}
+                    options={options}
+                />
+                :
+                null
+            }
         </div>
     )
 }
